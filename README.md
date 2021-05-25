@@ -1,4 +1,4 @@
-# Commenting system using EF Core and PostgreSQL
+# Commenting system using EF Core 5 and PostgreSQL
 
 Commenting system backend where we can -
 1. Register and login user
