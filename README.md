@@ -7,7 +7,7 @@ Commenting system backend where we can -
 ---
 3 main entities into play -
 - User
-```
+```javascript
 {
     "first_name": "John",
     "last_name": "Doe",
@@ -22,7 +22,7 @@ Commenting system backend where we can -
 ```
 
 - Post
-```
+```javascript
 {
     "title": "My first post",
     "body": "Post body",
@@ -31,7 +31,7 @@ Commenting system backend where we can -
 ```
 
 - Comment
-```
+```javascript
 {
     "body": "My first comment on the first post",
     "user_id": 1,
@@ -43,7 +43,7 @@ Commenting system backend where we can -
 
 1. Scaffold the project structure
 
-```
+```shell
 mkdir src
 cd src
 dotnet new webapi -o Api
@@ -71,11 +71,11 @@ EntityFrameworkCore.Exceptions.PostgreSQL -> For catching PostgreSQL exceptions 
 ```
 
 4. Apply the migrations
-```
+```C#
 Add-Migration InitialDbCreation
 Update-Database
 ```
 
 5. Add business logic
 
-6. Test using [`Postman collection`](https://www.getpostman.com/collections/04ea831f0d2f22111682)
+6. Postman [`collection`](https://www.getpostman.com/collections/04ea831f0d2f22111682) and [environment variable](./Local.postman_environment.json).

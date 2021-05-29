@@ -3,7 +3,6 @@ using Api.Models.Responses;
 using AutoMapper;
 using Core.Entities;
 using Core.Extensions;
-using Core.Services;
 using System;
 using System.Linq;
 
@@ -32,6 +31,7 @@ namespace Api.Models
                 .ForMember(dto => dto.GenderAbbreviation, options => options.MapFrom(src => src.GenderAbbreviation))
                 .ForMember(dto => dto.DateOfBirth, options => options.MapFrom(src => src.DateOfBirth.ConvertToLocalFromUTC(indianTimezoneId)))
                 .ForMember(dto => dto.Phone, options => options.MapFrom(src => src.Phone))
+                .ForMember(dto => dto.Username, options => options.MapFrom(src => src.Username))
                 .ForMember(dto => dto.Email, options => options.MapFrom(src => src.Email))
                 .ForMember(dto => dto.Posts, options => options.MapFrom(src => src.Posts.Select(p => new UserPost
                 {
