@@ -35,9 +35,7 @@ namespace Api.Controllers
         {
             try
             {
-                User u = _mapper.Map<RegisterUserDto, User>(dto);
-                u.Password = _passwordService.HashPassword(u.Password);
-                User created = await _service.RegisterUserAsync(u);
+                User created = await _service.RegisterUserAsync(_mapper.Map<RegisterUserDto, User>(dto));
                 return Ok(_mapper.Map<User, UserResponseDto>(created));
             }
             catch (UniqueConstraintException)

@@ -3,6 +3,7 @@ using Api.Models.Responses;
 using AutoMapper;
 using Core.Entities;
 using Core.Extensions;
+using Core.Services;
 using System;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace Api.Models
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile()
+        public MappingProfile(IPasswordService passwordService)
         {
             string indianTimezoneId = "India Standard Time";
 
@@ -22,7 +23,7 @@ namespace Api.Models
                 .ForMember(dto => dto.DateOfBirth, options => options.MapFrom(src => src.DateOfBirth.ToUniversalTime()))
                 .ForMember(dto => dto.Phone, options => options.MapFrom(src => src.Phone))
                 .ForMember(dto => dto.Email, options => options.MapFrom(src => src.Email))
-                .ForMember(dto => dto.Password, options => options.MapFrom(src => src.Password))
+                .ForMember(dto => dto.Password, options => options.MapFrom(src => passwordService.HashPassword(src.Password)))
                 .ForMember(dto => dto.CreatedAt, options => options.MapFrom(_ => DateTime.UtcNow));
 
             CreateMap<User, UserResponseDto>()

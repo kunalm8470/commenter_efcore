@@ -1,3 +1,5 @@
+using Api.Models;
+using AutoMapper;
 using Core.Interfaces;
 using Core.Services;
 using Infrastructure.Data;
@@ -50,6 +52,11 @@ namespace Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<ICommentService, CommentService>();
+
+            services.AddTransient(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile(provider.GetService<IPasswordService>()));
+            }).CreateMapper());
 
             services.AddControllers();
         }
